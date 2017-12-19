@@ -1,0 +1,78 @@
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    &lt;!&ndash; shrio的filter，在这里可以配置，登陆相关的页面，及对那些URL进行权限拦截权限认证 &ndash;&gt;
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    	&lt;!&ndash; shiro的核心安全接口 &ndash;&gt;
+    	<property name="securityManager" ref="securityManager" />
+    	&lt;!&ndash; 要求登录时的链接 &ndash;&gt;
+    	<property name="loginUrl" value="/" />
+    	&lt;!&ndash; 登陆成功后要跳转的连接 &ndash;&gt;
+    	<property name="successUrl" value="/index" />
+    	&lt;!&ndash; 未授权时要跳转的连接 &ndash;&gt;
+    	<property name="unauthorizedUrl" value="/" />
+    	<property name="filters">
+    		<map>
+    			<entry key="authc" value-ref="authenticationFilter"/>
+    		</map>
+    	</property>
+    	&lt;!&ndash; shiro连接约束配置 &ndash;&gt;
+    	<property name="filterChainDefinitions">
+    		<value>
+    			/captcha = anon
+    			/platinfo/v1/* = anon
+    			/user/v1/userLogin = anon
+    			/user/v1/userRegister = anon
+    			/**/* = authc
+    		</value>
+    	</property>
+    </bean>
+    <bean id="authenticationFilter" class="com.hz.xjd.console.security.shiro.filters.ShiroAuthenticationFilter"/>
+    &lt;!&ndash; 定义Shiro安全管理配置 &ndash;&gt;
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	&lt;!&ndash; 注入Realm &ndash;&gt;
+    	<property name="realm" ref="systemAuthorizingRealm" />
+    	&lt;!&ndash; 注入session管理器 &ndash;&gt;
+    	<property name="sessionManager" ref="sessionManager"/>
+    	&lt;!&ndash; 注入缓存管理器 &ndash;&gt;
+    	<property name="cacheManager" ref="cacheManager" />
+    </bean>
+    &lt;!&ndash; 自定义Realm &ndash;&gt;
+    <bean id="systemAuthorizingRealm" class="com.hz.xjd.console.security.shiro.realm.SystemAuthorizingRealm">
+    	<property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+    &lt;!&ndash; 会话管理配置 &ndash;&gt;
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+    	<property name="globalSessionTimeout" value="2592000000"/>
+    	<property name="sessionValidationSchedulerEnabled" value="true"/>
+    	<property name="sessionDAO" ref="redisSessionDAO"/>
+    </bean>
+    &lt;!&ndash; 缓存管理配置 &ndash;&gt;
+    <bean id="cacheManager" class="com.hz.xjd.console.security.cache.RedisCacheManager">
+    	<property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+	&lt;!&ndash; 密码的匹配  &ndash;&gt;
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		&lt;!&ndash; 散列算法 &ndash;&gt;
+		<property name="hashAlgorithmName" value="md5"/>
+		&lt;!&ndash; 散列迭代次数 &ndash;&gt;
+		<property name="hashIterations" value="2"/>
+	</bean>
+	&lt;!&ndash; redis会话Dao &ndash;&gt;
+	<bean id="redisSessionDAO" class="com.hz.xjd.console.security.cache.RedisSessionDao"/>
+
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	&lt;!&ndash; 保证实现了Shiro内部lifecycle函数的bean执行 &ndash;&gt;
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+</beans>-->
